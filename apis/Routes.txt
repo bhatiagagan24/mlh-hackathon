@@ -1,0 +1,18 @@
+1.
+/api/trip/expenses/add
+
+get -> email, key, item, price
+
+2.
+/api/trip/expenses/delete
+
+get -> email, key, item, price
+
+3. /api/trip/expenses/fetch
+
+get -> email, key
+
+4. 
+/auth
+
+get -> email, password
