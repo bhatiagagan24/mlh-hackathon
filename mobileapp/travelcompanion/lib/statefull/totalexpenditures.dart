@@ -37,7 +37,7 @@ class _MyBillState extends State<MyBill> {
   var listlen = 0;
 
   Future<List<Expense>> expensefetch() async {
-    var totalbill1 = 0;
+    var totalbill1 = 0.0;
     List<Expense> expenses = [];
     var uri = "http://192.168.1.10:5000/api/trip/expenses/fetch?key=" +
         apikey +
@@ -56,10 +56,16 @@ class _MyBillState extends State<MyBill> {
     print(exp1.price);
     // print(int.tryParse(respData['cost']));
     for (var i = 0; i < respData['cost'].length; i++) {
-      Expense temp1 =
-          new Expense(item: respData['items'][i], price: respData['cost'][i]);
-      expenses.add(temp1);
-      totalbill1 += int.tryParse(respData['cost'][i])!;
+      if (respData['cost'][i] == null) {
+        Expense temp1 = new Expense(item: respData['items'][i], price: '0');
+        expenses.add(temp1);
+      } else {
+        Expense temp1 =
+            new Expense(item: respData['items'][i], price: respData['cost'][i]);
+        expenses.add(temp1);
+
+        totalbill1 += double.tryParse(respData['cost'][i])!;
+      }
       // setState(() {
       //   totalbill = respData['cost'].reduce((a, b) => a + b);
       // });
@@ -123,8 +129,8 @@ class _MyBillState extends State<MyBill> {
   Future<http.Response> additemaftersplitting() async {
     // auth?email=temp1@gmail.com&password=temp1
     var bill = newitemcost.text;
-    var finalpeople = int.tryParse(persons.text);
-    var finalbill = int.tryParse(newitemcost.text);
+    var finalpeople = double.tryParse(persons.text);
+    var finalbill = double.tryParse(newitemcost.text);
     if (finalbill != null) {
       if (finalpeople != null) {
         bill = ((finalbill / finalpeople)).toString();
@@ -172,9 +178,13 @@ class _MyBillState extends State<MyBill> {
                         children: <Widget>[
                           Text('Add an Item'),
                           TextField(
+                            decoration:
+                                (InputDecoration(hintText: "Item Name")),
                             controller: newitem,
                           ),
                           TextField(
+                            decoration: (InputDecoration(hintText: "Price")),
+                            keyboardType: TextInputType.number,
                             controller: newitemcost,
                           ),
                           OutlinedButton(
@@ -208,11 +218,13 @@ class _MyBillState extends State<MyBill> {
                           TextField(
                             controller: newitemcost,
                             decoration: InputDecoration(hintText: "Item price"),
+                            keyboardType: TextInputType.number,
                           ),
                           TextField(
                             controller: persons,
                             decoration:
                                 InputDecoration(hintText: "No of People"),
+                            keyboardType: TextInputType.number,
                           ),
                           OutlinedButton(
                               onPressed: () {
@@ -244,6 +256,7 @@ class _MyBillState extends State<MyBill> {
                 // return Card(child: Text('data found'));
                 return ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data.length,
                   itemBuilder: (ctx, index) => ListTile(
                     title: Text(snapshot.data[index].item),

@@ -16,5 +16,17 @@ def tripexpensedb():
      curr.execute("INSERT INTO travel(email, item, cost) VALUES(%s, %s, %s)", ('temp1@gmail.com', 'hotel expense', '4000'), )
      conn.commit()
 
+def tripinventorydb():
+     conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+     curr = conn.cursor()
+     curr.execute("CREATE TABLE IF NOT EXISTS travelitem(email VARCHAR, item VARCHAR, cost VARCHAR)")
+     curr.execute("INSERT INTO travelitem(email, item) VALUES(%s, %s)", ('temp1@gmail.com', 'bag',), )
+     curr.execute("INSERT INTO travelitem(email, item) VALUES(%s, %s)", ('temp1@gmail.com', 'books',), )
+     curr.execute("INSERT INTO travelitem(email, item) VALUES(%s, %s)", ('temp1@gmail.com', 'shoes', ), )
+     curr.execute("INSERT INTO travelitem(email, item) VALUES(%s, %s)", ('temp1@gmail.com', 'wallet', ), )
+     conn.commit()
+
+
 if __name__ == '__main__':
-    tripexpensedb()
+     tripinventorydb()
+#     tripexpensedb()

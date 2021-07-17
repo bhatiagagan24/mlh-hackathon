@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:travelcompanion/statefull/signup.dart';
 import './statefull/loginform.dart';
+import './statefull/signup.dart';
 
 void main() {
   runApp(MyApp());
@@ -56,7 +58,10 @@ class HomeMain extends StatelessWidget {
                 child: Text('Click here to login'),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => Signup()));
+                },
                 child: Text('Click here to signup'),
               ),
             ],

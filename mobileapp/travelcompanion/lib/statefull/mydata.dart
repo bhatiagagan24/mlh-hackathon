@@ -14,7 +14,7 @@ class MyData extends StatefulWidget {
 
 class _MyDataState extends State<MyData> {
   var state = true;
-  Widget abcd = Text('Select Expense data or Items Packed');
+  Widget abcd = Text('Select an option from the above menu');
   // Function dispdata = MyBill();
   void displayData(val) {
     setState(() {
@@ -24,7 +24,7 @@ class _MyDataState extends State<MyData> {
         abcd = MyBill(apikey: widget.apikey, email: widget.email);
       } else {
         state = true;
-        abcd = MyBag();
+        abcd = MyBag(apikeys: widget.apikey, email: widget.email);
       }
     });
   }

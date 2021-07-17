@@ -1,5 +1,5 @@
 from flask import Flask, request
-from databasequerycode import logindata, tripdata
+from databasequerycode import logindata, tripdata, tripitems
 from creatingtables import logindb
 import json
 
@@ -75,7 +75,57 @@ def insertexpense():
     else:
         return "-1"
 
+@app.route('/api/trip/items/fetch')
+def fetch_item():
+    key = request.args.get('key')
+    email = request.args.get('email')
+    key_valid = logindata.validatingkey(email, key)
+    if key_valid == 1:
+        resp = tripitems.queryitems(email)
+        print(resp)
+        respmain = {
+            "items": resp
+        }
+        return json.dumps(respmain)
+    else:
+        return "Not Valid"
 
+@app.route('/api/trip/items/add')
+def insert_item():
+    key = request.args.get('key')
+    email = request.args.get('email')
+    item = request.args.get('item')
+    key_valid = logindata.validatingkey(email, key)
+    if key_valid == 1:
+        m = tripitems.additems(item, email)
+        if m == 1:
+            # insert successful
+            return "1"
+        else:
+            # insert unsuccessful
+            return "-1"
+    else:
+        # key not valid
+        return "-1"
+
+
+@app.route('/api/trip/items/delete')
+def delete_item():
+    key = request.args.get('key')
+    email = request.args.get('email')
+    item = request.args.get('item')
+    key_valid = logindata.validatingkey(email, key)
+    if key_valid == 1:
+        m = tripitems.delitems(item, email)
+        if m == 1:
+            # deletion successful
+            return "1"
+        else:
+            # deletion unsuccessful
+            return "-1"
+    else:
+        # key not valid
+        return "-1"
 
 
 
