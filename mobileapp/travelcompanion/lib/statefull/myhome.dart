@@ -29,7 +29,7 @@ class MainUserHome extends StatelessWidget {
                   printapikey();
                 },
                 child: Text('Print Api Key')),
-            MyData(),
+            MyData(apikey: this.apikey, email: this.email),
           ],
         ),
       ),
