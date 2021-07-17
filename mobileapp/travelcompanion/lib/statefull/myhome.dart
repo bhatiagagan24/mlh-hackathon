@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'mydata.dart';
 
 class MainUserHome extends StatelessWidget {
   final apikey;
@@ -13,8 +14,9 @@ class MainUserHome extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Travel Companion'),
+        title: Text('My Travel Companion'),
         backgroundColor: Colors.black,
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -26,7 +28,8 @@ class MainUserHome extends StatelessWidget {
                 onPressed: () {
                   printapikey();
                 },
-                child: Text('Print Api Key'))
+                child: Text('Print Api Key')),
+            MyData(),
           ],
         ),
       ),
