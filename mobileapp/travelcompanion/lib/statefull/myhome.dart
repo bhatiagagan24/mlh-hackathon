@@ -1,10 +1,35 @@
 import 'package:flutter/material.dart';
 
 class MainUserHome extends StatelessWidget {
-  const MainUserHome({Key? key}) : super(key: key);
+  final apikey;
+  final email;
+  const MainUserHome({Key? key, this.apikey, this.email}) : super(key: key);
+
+  void printapikey() {
+    print(apikey);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: Text('This is the main Home of the user'));
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Travel Companion'),
+        backgroundColor: Colors.black,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Center(
+              child: Text('Hey, Welcome ${this.email.toString()}'),
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  printapikey();
+                },
+                child: Text('Print Api Key'))
+          ],
+        ),
+      ),
+    );
   }
 }
