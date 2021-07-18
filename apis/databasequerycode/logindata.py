@@ -56,6 +56,7 @@ def signUp(email, password):
         curr.execute(''' INSERT INTO login(email, password) VALUES(%s, %s)''', (str(email), password, ) , )
         conn.commit()
         newKey = secrets.token_hex(16)
+        print("newKey")
         curr.execute("INSERT INTO keys(email, key) VALUES(%s, %s)", (email, newKey, ), )
         conn.commit()
         return 1
