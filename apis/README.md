@@ -1,4 +1,4 @@
-The API built for the mobile app. Built with Flask(Python). <br />
+The API built for the mobile app. Built with Flask(Python) and CockroachDB. <br />
 
 All requests made are GET requests. <br />
 
