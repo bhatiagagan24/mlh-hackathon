@@ -11,7 +11,7 @@ mobileapp folder contains the code for mobile app. Built using Flutter and Dart.
 
 ### Some Screenshots from the app
 
-<img src="https://raw.githubusercontent.com/bhatiagagan24/mlh-hackathon/main/app-screenshots/one.jpg" alt="landing page" />
+<img src="https://raw.githubusercontent.com/bhatiagagan24/mlh-hackathon/main/app-screenshots/one.jpg" alt="landing page" width="100" />
 
 <img src="https://raw.githubusercontent.com/bhatiagagan24/mlh-hackathon/main/app-screenshots/two.jpg" alt="landing page" />
 
