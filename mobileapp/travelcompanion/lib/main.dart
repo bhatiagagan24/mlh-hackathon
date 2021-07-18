@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.lime,
         brightness: Brightness.dark,
       ),
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
       // darkTheme: ,
     );
@@ -32,6 +33,7 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('Travel Companion'),
           backgroundColor: Colors.black,
+          centerTitle: true,
         ),
         body: Container(
           child: HomeMain(),
@@ -44,25 +46,56 @@ class HomeMain extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Container(
       child: Container(
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Text('Hey, Welcome to the Travel Companion'),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginForm()));
-                },
-                child: Text('Click here to login'),
+              Padding(
+                padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+                child: Text(
+                  'This is the ',
+                  style: TextStyle(fontSize: 40),
+                ),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Signup()));
-                },
-                child: Text('Click here to signup'),
+              Padding(
+                padding: EdgeInsets.all(0),
+                child: Text(
+                  'TRAVEL COMPANION',
+                  style: TextStyle(
+                      fontSize: 40, color: Colors.deepPurpleAccent.shade200),
+                ),
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Center(
+                      child: Text(''),
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Padding(padding: EdgeInsets.all(25)),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => LoginForm()));
+                    },
+                    child: Text('Click here to login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Signup()));
+                    },
+                    child: Text('Click here to signup'),
+                  ),
+                ],
               ),
             ],
           ),

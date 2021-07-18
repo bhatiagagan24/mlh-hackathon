@@ -21,14 +21,18 @@ class MainUserHome extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            Center(
-              child: Text('Hey, Welcome ${this.email.toString()}'),
+            Padding(
+              padding: EdgeInsets.fromLTRB(0, 4, 0, 0),
+              child: Text(
+                'Hey, Welcome ${this.email.toString()}',
+                style: TextStyle(color: Colors.green.shade200),
+              ),
             ),
-            ElevatedButton(
-                onPressed: () {
-                  printapikey();
-                },
-                child: Text('Print Api Key')),
+            // ElevatedButton(
+            //     onPressed: () {
+            //       printapikey();
+            //     },
+            //     child: Text('Print Api Key')),
             MyData(apikey: this.apikey, email: this.email),
           ],
         ),

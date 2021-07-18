@@ -259,12 +259,15 @@ class _MyBillState extends State<MyBill> {
                   physics: NeverScrollableScrollPhysics(),
                   itemCount: snapshot.data.length,
                   itemBuilder: (ctx, index) => ListTile(
-                    title: Text(snapshot.data[index].item),
+                    title: Text(
+                      snapshot.data[index].item,
+                      textAlign: TextAlign.center,
+                    ),
                     subtitle: new InkWell(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
-                          Text(snapshot.data[index].price),
+                          Text("Cost :- ${snapshot.data[index].price}"),
                           TextButton(
                             onPressed: () {
                               deletingitem(snapshot.data[index].item,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'loginform.dart';
 
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
@@ -11,6 +12,31 @@ class Signup extends StatefulWidget {
 class _SignupState extends State<Signup> {
   var email = TextEditingController();
   var password = TextEditingController();
+
+  Future<http.Response> signupapirequest() async {
+    // auth?email=temp1@gmail.com&password=temp1
+    var url = 'http://192.168.1.10:5000/signup?email=' +
+        email.text +
+        "&" +
+        "password=" +
+        password.text;
+    print(url);
+    var res = await http.get(Uri.parse(url));
+    print(res.body);
+    if (res.body == '1') {
+      setState(() {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginForm()));
+      });
+    } else {
+      setState(() {
+        AlertDialog(
+          title: Text('Login Unsuccessful, Please try again'),
+        );
+      });
+    }
+    return res;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +54,11 @@ class _SignupState extends State<Signup> {
               controller: password,
               obscureText: true,
             ),
-            TextButton(onPressed: () {}, child: Text('Sign Up'))
+            TextButton(
+                onPressed: () {
+                  signupapirequest();
+                },
+                child: Text('Sign Up'))
           ],
         ),
       ),

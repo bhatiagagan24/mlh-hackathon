@@ -1,4 +1,5 @@
 import psycopg2
+import secrets
 
 
 # used for checking credentials from the data.
@@ -53,6 +54,9 @@ def signUp(email, password):
         conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
         curr = conn.cursor()
         curr.execute(''' INSERT INTO login(email, password) VALUES(%s, %s)''', (str(email), password, ) , )
+        conn.commit()
+        newKey = secrets.token_hex(16)
+        curr.execute("INSERT INTO keys(email, key) VALUES(%s, %s)", (email, newKey, ), )
         conn.commit()
         return 1
     except:
