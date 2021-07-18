@@ -47,8 +47,21 @@ def validatingkey(email, key):
          return -1
 
 
+
+def signUp(email, password):
+    try:
+        conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+        curr = conn.cursor()
+        curr.execute(''' INSERT INTO login(email, password) VALUES(%s, %s)''', (str(email), password, ) , )
+        conn.commit()
+        return 1
+    except:
+        return -1
+
+
+
 # fetchingapikey('temp1@gmail.com')
 
 # checkingCredentials("temp1@gmail.com", "temp1")
 
-validatingkey('temp9@gmail.com', 'c9dee6e150d0acdea63ddc301ac39c4c')
+# validatingkey('temp9@gmail.com', 'c9dee6e150d0acdea63ddc301ac39c4c')

@@ -1,4 +1,5 @@
 from flask import Flask, request
+from werkzeug import datastructures
 from databasequerycode import logindata, tripdata, tripitems
 from creatingtables import logindb
 import json
@@ -19,6 +20,16 @@ def login():
     else:
         # login unsuccessful
         return str(-1)
+
+@app.route('/signup')
+def signup():
+    email = request.args.get('email')
+    password = request.args.get('password')
+    resp = logindata.signUp(email, password)
+    if resp == 1:
+        return "1"
+    else:
+        return "-1"
 
 
 # expenses fetch
