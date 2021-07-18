@@ -1,16 +1,8 @@
 # travelcompanion
+Built with flutter and dart. <br />
 
-A new Flutter project.
+The one app to maintain all the expenses occuring during the trip. <br />
+Also provides the feature of making a list of essential items so that you don't forget about them when returing back from the vaction. <br />
 
-## Getting Started
+### Managing your expenses and your bag has never been this easy during the vacation.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
