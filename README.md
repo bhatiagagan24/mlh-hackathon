@@ -22,3 +22,9 @@ mobileapp folder contains the code for mobile app. Built using Flutter and Dart.
 <img src="https://raw.githubusercontent.com/bhatiagagan24/mlh-hackathon/main/app-screenshots/five.jpg" alt="landing page" width="200"/>
 </span>
 
+### The Database of the app deployed on the cloud (CockroachDB): - 
+<span>
+<img src="https://raw.githubusercontent.com/bhatiagagan24/mlh-hackathon/main/database-screenshots/cdb-tables.PNG" alt="database1" width="200"/>
+
+<img src="https://raw.githubusercontent.com/bhatiagagan24/mlh-hackathon/main/database-screenshots/cdb-dashboard.PNG" alt="database2" width="200"/>
+</span>
