@@ -2,6 +2,8 @@ The API built for the mobile app. Built with Flask(Python) and CockroachDB. <br 
 
 All requests made are GET requests. <br />
 
+#### For all the files in creatingtables and databasequerycode folders, replace link variable with own CockroachDB Cloud Uri
+
 Routes Includes: - <br />
 1. /auth -> Authenticating user. Returns back the API key <br />
 2. /signup -> For Signup of the user <br />

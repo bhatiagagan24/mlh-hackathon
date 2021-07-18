@@ -3,10 +3,11 @@
 
 from flask import Flask
 import psycopg2
-import secrets
+import secrets, os
 
 def firstUser():
-    conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+    link = os.getenv('dbkey')
+    conn = psycopg2.connect(link)
     curr = conn.cursor()
     curr.execute("CREATE TABLE IF NOT EXISTS login(email VARCHAR PRIMARY KEY, password VARCHAR)")
     curr.execute("INSERT INTO login(email, password) VALUES(%s, %s)", ('temp1@gmail.com', 'temp2'), )
@@ -17,7 +18,8 @@ def firstUser():
 def apiKeys(email): 
     key = secrets.token_hex(16)
     try:
-        conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+        link = os.environ['dbkey']
+        conn = psycopg2.connect(link)
         curr = conn.cursor()
         curr.execute("CREATE TABLE IF NOT EXISTS keys(email VARCHAR PRIMARY KEY, key VARCHAR)")
         curr.execute("INSERT INTO keys(email, key) VALUES(%s, %s)", (email, key, ), )

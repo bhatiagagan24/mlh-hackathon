@@ -7,7 +7,8 @@ import psycopg2
 
 # travel table stores the travel expense info
 def tripexpensedb():
-     conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+     link = os.getenv('dbkey')
+     conn = psycopg2.connect(link)     
      curr = conn.cursor()
      curr.execute("CREATE TABLE IF NOT EXISTS travel(email VARCHAR, item VARCHAR, cost VARCHAR)")
      curr.execute("INSERT INTO travel(email, item, cost) VALUES(%s, %s, %s)", ('temp1@gmail.com', 'coffee', '100'), )
@@ -17,7 +18,8 @@ def tripexpensedb():
      conn.commit()
 
 def tripinventorydb():
-     conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+     link = os.getenv('dbkey')
+     conn = psycopg2.connect(link)
      curr = conn.cursor()
      curr.execute("CREATE TABLE IF NOT EXISTS travelitem(email VARCHAR, item VARCHAR, cost VARCHAR)")
      curr.execute("INSERT INTO travelitem(email, item) VALUES(%s, %s)", ('temp1@gmail.com', 'bag',), )

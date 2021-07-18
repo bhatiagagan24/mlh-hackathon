@@ -1,6 +1,7 @@
 
 # used for querying the trip data by the api
 import psycopg2
+import os
 
 
 
@@ -8,7 +9,8 @@ import psycopg2
 # for fetching all the trip expense data
 def querytripexpensedata(email):
      try:
-        conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+        link = os.environ['dbkey']
+        conn = psycopg2.connect(link)        
         curr = conn.cursor()
         #  (email, item, cost)
         curr.execute(''' SELECT * from travel WHERE email = %s''', (str(email), ) , )
@@ -16,7 +18,7 @@ def querytripexpensedata(email):
         items = []
         cost = []
         for t in keyFound:
-            print(t)
+            # print(t)
             items.append(t[1])
             cost.append(t[2])
         return [items, cost]
@@ -25,7 +27,8 @@ def querytripexpensedata(email):
 
 def deletetripexpensedata(email, itemname, price):
      try:
-        conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+        link = os.environ['dbkey']
+        conn = psycopg2.connect(link)        
         curr = conn.cursor()
         curr.execute('''DELETE FROM travel WHERE email = %s AND item = %s AND cost = %s''', (email, itemname, price, ),)
         conn.commit()
@@ -37,7 +40,8 @@ def deletetripexpensedata(email, itemname, price):
 
 def inserttripexpensedata(email, itemname, price):
      try:
-        conn = psycopg2.connect("postgresql://gagandeep:WABb3EPebeVyneCT@free-tier8.aws-ap-southeast-1.cockroachlabs.cloud:26257/defaultdb?sslmode=require&sslrootcert=$env:appdata\.postgresql\root.crt&options=--cluster%3Dhackathon-project-134")
+        link = os.environ['dbkey']
+        conn = psycopg2.connect(link)
         curr = conn.cursor()
         curr.execute('''INSERT INTO travel(email, item, cost) VALUES (%s, %s, %s)''', (email, itemname, price, ),)
         conn.commit()

@@ -93,7 +93,7 @@ def fetch_item():
     key_valid = logindata.validatingkey(email, key)
     if key_valid == 1:
         resp = tripitems.queryitems(email)
-        print(resp)
+        # print(resp)
         respmain = {
             "items": resp
         }
